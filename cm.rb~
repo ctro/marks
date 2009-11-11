@@ -4,29 +4,29 @@ require 'dm-core'
 
 # DataMapper setup
 # http://datamapper.org/getting-started.html
-DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/cloudmarks.sqlite3")
+DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/cm.sqlite3")
 
 class User
   include DataMapper::Resource
   
-  has n :marks
+  has n, :marks
   
   property :id,         Serial
-  property :name,       String
+  property :openid,     String
   property :created_at, DateTime
 end
 
 class Mark
   include DataMapper::Resource
   
-  has 1 :user
+  has 1, :user
 
   property :id,         Serial
-  property :user_id,    Serial
+  property :user_id,    Integer
   property :title,      String, :nullable => false
   property :uri,        String, :nullable => false
-  property :x,          Serial, :default => 33
-  property :y,          Serial, :default => 33
+  property :x,          Integer, :default => 33
+  property :y,          Integer, :default => 33
   property :created_at, DateTime
 end
 
@@ -34,6 +34,6 @@ DataMapper.auto_upgrade!
 
 # index
 get '/' do
-  erb :index
+  haml :index
 end
 
