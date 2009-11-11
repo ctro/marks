@@ -1,11 +1,11 @@
 require 'rubygems'
 require 'sinatra'
 require 'dm-core'
+require 'openid_consumer'
+require 'rack-flash'
 
-# DataMapper setup
-# http://datamapper.org/getting-started.html
+### DataMapper
 DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/cm.sqlite3")
-
 class User
   include DataMapper::Resource
   
@@ -29,14 +29,16 @@ class Mark
   property :y,          Integer, :default => 33
   property :created_at, DateTime
 end
-
 DataMapper.auto_upgrade!
+
+### Sinatra
+enable :sessions
+use Rack::Flash
 
 get '/style.css' do
   content_type 'text/css', :charset => 'utf-8'
   sass :style
 end
-
 
 # index
 get '/' do

@@ -1,0 +1,5 @@
+%form{ :class => "openid_login", :method => "post", :action => "/login/openid" }
+  %label{ :for => "openid_identifier" } Your OpenID
+  %input{ :type => "text", :name => "openid_identifier", :style => "background: url(http://openid.net/images/login-bg.gif) no-repeat #FFF 5px; padding-left: 25px;" }
+  %a{ :href=> "http://openid.net/get", :title => "What is an OpenID? Where can I get one?" } ?
+  %input{ :type => "submit", :value => "Login" }

@@ -4,12 +4,22 @@
 
   %head
     %title Cloudmarks: antisocial bookmarking for you
+    %link{ :href => "/style.css", :rel => "stylesheet", :type => "text/css"}
+    
   %body
   
     %h1 Cloudmarks
+    
+    -[:notice, :error].each do |type|
+      -if flash[type]
+        - flash[type].each do |msg|
+          = %(<div id="#{type}">#{msg}</div>)
   
     #nav
-      %a.login{ :href => "/login"  } login
+      - if session[:user]
+        %a{ :href => "/logout" } logout
+      - else
+        = haml(:login, :layout => false)
 
     #cloudmarks
       #test= DateTime.now()
