@@ -17,7 +17,6 @@ function make_resizable(mark_id){
   var html_id = "#"+mark_id;
   
   $(html_id).resizable({ 
-    containment: 'parent',
     stop: function(event, ui) { $.post("/marks/"+db_id+"/size", { 'width':ui.size['width'], 'height':ui.size['height'] }) }
   });  
 }

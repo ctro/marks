@@ -36,10 +36,10 @@ end
 
 post '/marks/:id/pos' do
   protected!
-  @user.marks.first(:id => params[:id]).update_attributes(:x => params[:x], :y => params[:y])
+  @user.marks.first(:id => params[:id]).update(:x => params[:x].to_i.abs, :y => params[:y].to_i.abs)
 end
 
 post '/marks/:id/size' do
   protected!
-  @user.marks.first(:id => params[:id]).update_attributes(:width => params[:width], :height => params[:height])
+  @user.marks.first(:id => params[:id]).update(:width => params[:width].to_i.abs, :height => params[:height].to_i.abs)
 end
