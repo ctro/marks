@@ -64,3 +64,8 @@ post '/marks' do
   Mark.create(params[:mark].merge!(:user_id => @user.id))
   redirect '/'
 end
+
+post '/marks/:id/pos' do
+  protected!
+  @user.marks.first(:id => params[:id]).update_attributes(:x => params[:x], :y => params[:y])
+end
