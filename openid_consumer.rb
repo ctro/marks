@@ -20,7 +20,7 @@ module Sinatra
     end
     
     get '/logout' do
-      session[:user] = nil
+      session[:user_id] = nil
       redirect '/'
     end
 
@@ -30,7 +30,7 @@ module Sinatra
         oidreq = openid_consumer(session).begin(openid)
       rescue OpenID::DiscoveryFailure => why
         flash[:error] = "Sorry, we couldn't find your identifier '#{openid}'"
-        redirect "/"
+        redirect '/'
       else
         redirect oidreq.redirect_url(root_url(request), root_url(request) + "/login/openid/complete")
       end
@@ -41,22 +41,21 @@ module Sinatra
 
       case oidresp.status
       when OpenID::Consumer::FAILURE
-        flash[:error] = "Sorry, we could not authenticate you with the identifier '{openid}'."
+        flash[:error] = "Sorry, we could not authenticate you with the identifier '#{openid}'."
         redirect"/"
 
       when OpenID::Consumer::SETUP_NEEDED
         flash[:error] = "Immediate request failed - Setup Needed"
-        redirect "/"
+        redirect '/'
 
       when OpenID::Consumer::CANCEL
         flash[:error] = "Login cancelled."
-        redirect "/"
+        redirect '/'
 
       when OpenID::Consumer::SUCCESS
-        flash[:notice] = "Login successful"
-        # session[:user] = User.find_by_openid(oidresp.display_identifier)
-        session[:user] = true
-        redirect "/"
+        flash[:notice] = "Welcome back!"
+        session[:user_id] = User.find_or_create(:openid => oidresp.display_identifier).id
+        redirect '/'
       end
     end
   end

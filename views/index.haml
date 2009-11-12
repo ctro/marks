@@ -5,21 +5,40 @@
   %head
     %title Cloudmarks: antisocial bookmarking for you
     %link{ :href => "/style.css", :rel => "stylesheet", :type => "text/css"}
-    
+      
   %body
   
     %h1 Cloudmarks
     
-    -[:notice, :error].each do |type|
-      -if flash[type]
-        - flash[type].each do |msg|
-          = %(<div id="#{type}">#{msg}</div>)
-  
-    #nav
-      - if session[:user]
-        %a{ :href => "/logout" } logout
-      - else
-        = haml(:login, :layout => false)
-
-    #cloudmarks
-      #test= DateTime.now()
+    #session
+      for
+      .oid= @user.openid
+      %a{ :href => "/logout" } [log out]
+      
+    #message
+      -[:notice, :error].each do |type|
+        -if flash[type]
+          %div{ :id => type }= flash[type]
+            
+    #new_mark
+      %a{ :href=> "#", :onclick => "show_new_mark_form();"} New Mark
+      %form{ :method => "post", :action => "/marks", :style => "display:none;" }
+        %label{ :for => "mark_name"} Name
+        %input#mark_name{ :type => "text", :name => "mark[name]" } 
+        %label{ :for => "mark_uri" } Url
+        %input#mark_uri{ :type => "text", :name => "mark[uri]" }
+        %input{ :type => "submit", :value => "Create" }
+        %a{ :href => "#", :onclick => "hide_new_mark_form();"} Cancel
+        
+    #marks
+      %ul
+      -@user.marks.all.each do |mark|
+        %li.mark{ :id => "mark_#{mark.id}", :style => "width: #{mark.width}; height: #{mark.height}; x: #{mark.x}; y: #{mark.y}" }
+          %a{ :href => "#{mark.uri}" }= mark.name
+    
+    
+    %script{ :type => "text/javascript", :src => "http://www.google.com/jsapi" }
+    %script{ :type => "text/javascript" }
+      google.load("jquery", "1.3.2");
+      google.load("jqueryui", "1.7.2");     
+    %script{ :type => "text/javascript", :src => "/func.js"}
