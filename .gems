@@ -1,1 +1,8 @@
 rack-flash
+dm-core
+dm-ar-finders
+dm-types
+dm-timestamps
+ruby-openid --version '>=2.1.2'
+haml
+sass
