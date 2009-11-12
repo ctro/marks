@@ -1,3 +1,3 @@
 rack-flash
 dm-ar-finders
-dm-types --verision '>=0.10.1'
+dm-types --version '>=0.10.1'
