@@ -33,7 +33,7 @@
     #marks
       %ul
       -@user.marks.all.each do |mark|
-        %li.mark{ :id => "mark_#{mark.id}", :onclick => "make_draggable(this.id);", :style => "width: #{mark.width}px;height:#{mark.height}px;left:#{mark.x}px;top:#{mark.y}px;" }
+        %li.mark{ :id => "mark_#{mark.id}", :style => "width:#{mark.width}px;height:#{mark.height}px;left:#{mark.x}px;top:#{mark.y}px;" }
           %a{ :href => "#{mark.uri}" }= mark.name
     
     

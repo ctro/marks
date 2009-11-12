@@ -1,4 +1,8 @@
 
+//set draggable for marks
+$(".mark").each(function(){ make_draggable(this.id); });
+
+
 function make_draggable(mark_id){
   var db_id = mark_id.substring(5);
   var html_id = "#"+mark_id;
