@@ -1,8 +1,8 @@
 require 'rubygems'
 require 'sinatra'
 require 'rack-flash'
-require 'lib/openid_consumer'
-require 'lib/models'
+require 'openid_consumer'
+require 'models'
 
 
 enable :sessions
