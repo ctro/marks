@@ -38,3 +38,8 @@ post '/marks/:id/pos' do
   protected!
   @user.marks.first(:id => params[:id]).update_attributes(:x => params[:x], :y => params[:y])
 end
+
+post '/marks/:id/size' do
+  protected!
+  @user.marks.first(:id => params[:id]).update_attributes(:width => params[:width], :height => params[:height])
+end

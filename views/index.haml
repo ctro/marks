@@ -4,7 +4,13 @@
 
   %head
     %title Cloudmarks: antisocial bookmarking for you
-    %link{ :href => "/style.css", :rel => "stylesheet", :type => "text/css"}
+    %link{ :href => "/style.css", :rel => "stylesheet", :type => "text/css" }
+    %link{ :href => "http://ajax.googleapis.com/ajax/libs/jqueryui/1.7.2/themes/base/jquery-ui.css", :rel => "stylesheet", :type => "text/css" }
+    
+    %script{ :type => "text/javascript", :src => "http://www.google.com/jsapi" }
+    %script{ :type => "text/javascript" }
+      google.load("jquery", "1.3.2");
+      google.load("jqueryui", "1.7.2");
       
   %body
   
@@ -35,10 +41,6 @@
       -@user.marks.all.each do |mark|
         %li.mark{ :id => "mark_#{mark.id}", :style => "width:#{mark.width}px;height:#{mark.height}px;left:#{mark.x}px;top:#{mark.y}px;" }
           %a{ :href => "#{mark.uri}" }= mark.name
-    
-    
-    %script{ :type => "text/javascript", :src => "http://www.google.com/jsapi" }
-    %script{ :type => "text/javascript" }
-      google.load("jquery", "1.3.2");
-      google.load("jqueryui", "1.7.2");     
+          %small= mark.uri
+     
     %script{ :type => "text/javascript", :src => "/func.js"}

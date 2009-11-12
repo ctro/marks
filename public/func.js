@@ -1,6 +1,6 @@
 
-//set draggable for marks
 $(".mark").each(function(){ make_draggable(this.id); });
+$(".mark").each(function(){ make_resizable(this.id); });
 
 function make_draggable(mark_id){
   var db_id = mark_id.substring(5);
@@ -9,6 +9,16 @@ function make_draggable(mark_id){
   $(html_id).draggable({ 
     containment: 'parent',
     stop: function(event, ui) { $.post("/marks/"+db_id+"/pos", { 'x':ui.position['left'], 'y':ui.position['top'] }) }
+  });  
+}
+
+function make_resizable(mark_id){
+  var db_id = mark_id.substring(5);
+  var html_id = "#"+mark_id;
+  
+  $(html_id).resizable({ 
+    containment: 'parent',
+    stop: function(event, ui) { $.post("/marks/"+db_id+"/size", { 'width':ui.size['width'], 'height':ui.size['height'] }) }
   });  
 }
 
