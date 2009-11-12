@@ -3,6 +3,8 @@ require 'sinatra'
 require 'rack-flash'
 require 'openid_consumer'
 require 'models'
+require 'haml'
+require 'sass'
 
 
 enable :sessions

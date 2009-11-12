@@ -3,7 +3,7 @@ require 'dm-ar-finders'
 require 'dm-types'
 require 'dm-timestamps'
 
-DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/cm.sqlite3")
+DataMapper.setup(:default, "sqlite3://#{Dir.pwd}/marks.sqlite3")
 class User
   include DataMapper::Resource
 
