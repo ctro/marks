@@ -36,12 +36,9 @@ post '/marks' do
   redirect '/'
 end
 
-post '/marks/:id/pos' do
+get '/go/:id' do
   protected!
-  @user.marks.first(:id => params[:id]).update(:x => params[:x].to_i.abs, :y => params[:y].to_i.abs)
-end
-
-post '/marks/:id/size' do
-  protected!
-  @user.marks.first(:id => params[:id]).update(:width => params[:width].to_i.abs, :height => params[:height].to_i.abs)
+  mark = @user.marks.first(:id => params[:id])
+  mark.update(:clicks => mark.clicks + 1)
+  redirect mark.uri.to_s
 end

@@ -18,12 +18,10 @@ class Mark
   include DataMapper::Resource
   
   property :id,         Serial
-  property :name,       String,  :nullable => false
-  property :uri,        URI,     :nullable => false
-  property :x,          Integer, :default => 33
-  property :y,          Integer, :default => 33
-  property :width,      Integer, :default => 111
-  property :height,     Integer, :default => 111
+  property :name,       String,  :required => true
+  property :uri,        URI,     :required => true
+  property :clicks,   Integer, :default => 0
+  property :key,        String
   property :created_at, DateTime
   
   belongs_to :user
