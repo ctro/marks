@@ -40,7 +40,9 @@
       %ul
       -@user.marks.all( :order => [:clicks.desc] ).each do |mark|
         %li.mark{ :id => "mark_#{mark.id}" }
-          %a{ :href => "/go/#{mark.id}" }= mark.name
+          %a{ :href => "/marks/go/#{mark.id}" }= mark.name
+          %small
+            %a{ :href => "/marks/destroy/#{mark.id}" } [x]
           %small= mark.uri
      
     %script{ :type => "text/javascript", :src => "/func.js"}

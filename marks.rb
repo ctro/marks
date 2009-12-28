@@ -36,9 +36,15 @@ post '/marks' do
   redirect '/'
 end
 
-get '/go/:id' do
+get '/marks/go/:id' do
   protected!
   mark = @user.marks.first(:id => params[:id])
   mark.update(:clicks => mark.clicks + 1)
   redirect mark.uri.to_s
+end
+
+get '/marks/destroy/:id' do
+  protected!
+  @user.marks.first(:id => params[:id]).destroy
+  redirect '/'
 end
