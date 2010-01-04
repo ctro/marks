@@ -28,21 +28,18 @@
             
     #new_mark
       %a{ :href=> "#", :onclick => "show_new_mark_form();"} New Mark
-      %form{ :method => "post", :action => "/marks", :style => "display:none;" }
-        %label{ :for => "mark_name"} Name
-        %input#mark_name{ :type => "text", :name => "mark[name]" } 
-        %label{ :for => "mark_uri" } Url
-        %input#mark_uri{ :type => "text", :name => "mark[uri]" }
-        %input{ :type => "submit", :value => "Create" }
-        %a{ :href => "#", :onclick => "hide_new_mark_form();"} Cancel
+      = haml(:newform, :layout => false)
         
     #marks
       %ul
       -@user.marks.all( :order => [:clicks.desc] ).each do |mark|
         %li.mark{ :id => "mark_#{mark.id}" }
-          %a{ :href => "/marks/go/#{mark.id}" }= mark.name
-          %small
-            %a{ :href => "/marks/destroy/#{mark.id}" } [x]
+          %a.main{ :href => "/marks/go/#{mark.id}" }= mark.name
           %small= mark.uri
+          #edit_mark{ :id => "#{mark.id}"}
+            = haml(:editform, :layout => false, :locals => {:mark => mark} )
+          %small.actions
+            %a{ :href => "/destroy/#{mark.id}", :method => :delete, :onclick => "return confirm('Are you sure?');" } [x]
+            %a{ :href => "#", :onclick => "show_edit_mark_form(#{mark.id});" } [edit]
      
     %script{ :type => "text/javascript", :src => "/func.js"}

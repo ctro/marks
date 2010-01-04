@@ -3,5 +3,13 @@ function show_new_mark_form(){
 }
 
 function hide_new_mark_form(){
-  $('#new_mark form').hide('explode', 'slow');
+  $('#new_mark form').hide('normal');
+}
+
+function show_edit_mark_form(id){
+  $('#edit_mark_' + id + ' form').show('normal');
+}
+
+function hide_edit_mark_form(id){
+  $('#edit_mark_' + id + ' form').hide('normal');
 }

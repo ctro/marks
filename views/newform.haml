@@ -1,0 +1,7 @@
+%form{ :method => "post", :action => "/", :style => "display:none;" }
+  %label{ :for => "mark_name"} Name
+  %input#mark_name{ :type => "text", :name => "mark[name]" } 
+  %label{ :for => "mark_uri" } Url
+  %input#mark_uri{ :type => "text", :name => "mark[uri]" }
+  %input{ :type => "submit", :value => "Create" }
+  %a.cancel{ :href => "#", :onclick => "hide_new_mark_form();"} Cancel

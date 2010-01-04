@@ -30,12 +30,6 @@ get '/' do
   haml :index
 end
 
-post '/marks' do
-  protected!
-  Mark.create(params[:mark].merge!(:user_id => @user.id))
-  redirect '/'
-end
-
 get '/marks/go/:id' do
   protected!
   mark = @user.marks.first(:id => params[:id])
@@ -43,8 +37,24 @@ get '/marks/go/:id' do
   redirect mark.uri.to_s
 end
 
-get '/marks/destroy/:id' do
+#CRUD
+post '/' do
   protected!
-  @user.marks.first(:id => params[:id]).destroy
+  Mark.create(params[:mark].merge!(:user_id => @user.id))
+  redirect '/'
+end
+
+put '/:id' do
+  protected!
+  mark = @user.marks.get(params[:id])
+  mark.attributes = params[:mark]
+  mark.save
+  redirect '/'
+end
+
+get '/destroy/:id' do
+  protected!
+  mark = @user.marks.get(params[:id])
+  mark.destroy
   redirect '/'
 end

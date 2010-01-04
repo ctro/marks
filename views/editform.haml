@@ -1,0 +1,8 @@
+%form{ :method => "post", :action => "/#{mark.id}", :style => "display:none;" }
+  %input{ :type => :hidden, :name => "_method", :value => "put" }
+  %label{ :for => "mark_name"} Name
+  %input#mark_name{ :type => "text", :name => "mark[name]", :value => "#{mark.name}" } 
+  %label{ :for => "mark_uri" } Url
+  %input#mark_uri{ :type => "text", :name => "mark[uri]", :value => "#{mark.uri}" }
+  %input{ :type => "submit", :value => "Update" }
+  %a.cancel{ :href => "#", :onclick => "hide_edit_mark_form('#{mark.id}');"} Cancel
