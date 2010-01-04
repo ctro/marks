@@ -20,8 +20,8 @@ class Mark
   property :id,         Serial
   property :name,       String,  :required => true
   property :uri,        URI,     :required => true
-  property :clicks,   Integer, :default => 0
-  property :key,        String
+  property :clicks,     Integer, :default => 0
+  property :accesskey,  String,  :length => 1
   property :created_at, DateTime
   
   belongs_to :user

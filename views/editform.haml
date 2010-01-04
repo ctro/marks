@@ -4,5 +4,7 @@
   %input#mark_name{ :type => "text", :name => "mark[name]", :value => "#{mark.name}" } 
   %label{ :for => "mark_uri" } Url
   %input#mark_uri{ :type => "text", :name => "mark[uri]", :value => "#{mark.uri}" }
+  %label{ :for => "mark_accesskey" } Access Key
+  %input#mark_accesskey{ :type => "text", :name => "mark[accesskey]", :maxlength => 1, :value => "#{mark.accesskey}" }
   %input{ :type => "submit", :value => "Update" }
   %a.cancel{ :href => "#", :onclick => "hide_edit_mark_form('#{mark.id}');"} Cancel

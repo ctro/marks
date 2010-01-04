@@ -14,8 +14,6 @@
   
     %h1 Marks
     
-    %a{:href => "http://www.reddit.com", :accesskey => "r"} press "ctrl + r"
-    
     #session
       for
       .oid= @user.openid
@@ -34,7 +32,9 @@
       %ul
       -@user.marks.all( :order => [:clicks.desc] ).each do |mark|
         %li.mark{ :id => "mark_#{mark.id}" }
-          %a.main{ :href => "/marks/go/#{mark.id}" }= mark.name
+          #main
+            %a{ :href => "/marks/go/#{mark.id}", :accesskey => "#{mark.accesskey}" }= mark.name
+            %small= "[#{mark.accesskey}]" unless mark.accesskey.blank?
           %small= mark.uri
           #edit_mark{ :id => "#{mark.id}"}
             = haml(:editform, :layout => false, :locals => {:mark => mark} )
