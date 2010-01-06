@@ -40,7 +40,8 @@ end
 #CRUD
 post '/' do
   protected!
-  Mark.create(params[:mark].merge!(:user_id => @user.id))
+  mark = Mark.create(params[:mark].merge!(:user_id => @user.id))
+  set_errors(mark)
   redirect '/'
 end
 
@@ -49,6 +50,7 @@ put '/:id' do
   mark = @user.marks.get(params[:id])
   mark.attributes = params[:mark]
   mark.save
+  set_errors(mark)
   redirect '/'
 end
 
@@ -57,4 +59,13 @@ get '/destroy/:id' do
   mark = @user.marks.get(params[:id])
   mark.destroy
   redirect '/'
+end
+
+private
+def set_errors(mark)
+  if mark.errors.empty?
+    flash[:notice] = "Yep, that worked."
+  else
+    flash[:error] = "Oops, try again:<br/>#{mark.errors.full_messages.join('<br/>')}"
+  end
 end

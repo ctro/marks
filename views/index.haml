@@ -39,7 +39,7 @@
           #edit_mark{ :id => "#{mark.id}"}
             = haml(:editform, :layout => false, :locals => {:mark => mark} )
           %small.actions
-            %a{ :href => "/destroy/#{mark.id}", :method => :delete, :onclick => "return confirm('Are you sure?');" } [x]
+            %a{ :href => "/destroy/#{mark.id}", :method => :delete, :onclick => "return confirm('Are you sure?');" } [delete]
             %a{ :href => "#", :onclick => "show_edit_mark_form(#{mark.id});" } [edit]
      
     %script{ :type => "text/javascript", :src => "/func.js"}
