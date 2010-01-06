@@ -2,8 +2,10 @@ require 'dm-core'
 require 'dm-ar-finders'
 require 'dm-timestamps'
 require 'dm-validations'
+require 'rubygems'
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "sqlite3://#{Dir.pwd}/marks.sqlite3")
+
 class User
   include DataMapper::Resource
 
