@@ -1,3 +1,4 @@
 rack-flash
+dm-ar-finders --version '>=0.10.1'
 dm-types --version '>=0.09.11'
 dm-timestamps --version '>=0.09.11'
