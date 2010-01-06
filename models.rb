@@ -20,7 +20,7 @@ class Mark
   
   property :id,         Serial
   property :name,       String,  :required => true
-  property :uri,        URI,     :required => true, :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
+  property :uri,        String,  :required => true, :format => /(^$)|(^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(([0-9]{1,5})?\/.*)?$)/ix
   property :clicks,     Integer, :default => 0
   property :accesskey,  String,  :length => 1
   property :created_at, DateTime
