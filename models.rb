@@ -1,6 +1,5 @@
 require 'dm-core'
 require 'dm-ar-finders'
-require 'dm-types'
 require 'dm-timestamps'
 require 'dm-validations'
 
