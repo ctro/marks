@@ -3,5 +3,4 @@ dm-core --version '>=0.10.2'
 dm-ar-finders --version '>=0.10.2'
 dm-timestamps --version '>=0.10.2'
 dm-validations --version '>=0.10.2'
-data_objects
-do_sqlite3
+data_objects --version '>=0.10.0'
